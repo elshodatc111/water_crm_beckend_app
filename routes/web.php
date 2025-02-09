@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StorageController;
+use App\Http\Controllers\SettingController;
 
 Auth::routes();
 
@@ -21,4 +22,8 @@ Route::post('/users-create', [UserController::class, 'create'])->name('users_cre
 
 Route::get('/storage', [StorageController::class, 'index'])->name('storage');
 Route::post('/storage-store', [StorageController::class, 'store'])->name('storage_store');
+
+
+Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+Route::post('/setting-update', [SettingController::class, 'update'])->name('setting_update');
 
