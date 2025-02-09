@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Ombor Nomi</h1>
+        <h1 class="h3 mb-0 text-gray-800">{{ $Storage->name }}</h1>
     </div>
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -39,9 +39,9 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
+                                <td>{{ $Storage->dishes_count }}</td>
+                                <td>{{ $Storage->dishes_defective }}</td>
+                                <td>{{ number_format($Storage['cash_paymart'], 0, '.', ' ') }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -163,7 +163,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="expenseModalLabel">Balansdan chiqim (Mavjud: 450 000 so'm)</h5>
+                <h5 class="modal-title" id="expenseModalLabel">Balansdan chiqim (Mavjud: {{ number_format($Storage['cash_paymart'], 0, '.', ' ') }} so'm)</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -173,7 +173,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="expense-amount">Chiqim summasi</label>
-                        <input type="number" class="form-control" id="expense-amount" name="amount" required>
+                        <input type="number" max="{{ $Storage['cash_paymart'] }}" class="form-control" id="expense-amount" name="amount" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -195,13 +195,14 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="#" method="post">
+            <form action="{{ route('stotage_update',$Storage->id) }}" method="post">
                 @csrf 
+                @method('put')
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="storage-name">Ombor nomi</label>
-                        <input type="text" class="form-control" id="storage-name" name="name" required>
-                        <label for="storage-name">Ombor ish faoliyati</label>
+                        <input type="text" class="form-control" id="storage-name" name="name" value="{{ $Storage->name }}" required>
+                        <label for="storage-status">Ombor ish faoliyati</label>
                         <select name="status" class="form-control">
                             <option value="true">Aktive</option>
                             <option value="false">Yanunlash</option>
