@@ -37,7 +37,7 @@
                                 @forelse($guard as $item)
                                     <tr>
                                         <td>{{ $loop->index+1 }}</td>
-                                        <td><a href="#">{{ $item['name'] }}</a></td>
+                                        <td><a href="{{ route('user_show_guard',$item['id']) }}">{{ $item['name'] }}</a></td>
                                         <td>{{ $item['phone'] }}</td>
                                         <td>{{ $item['email'] }}</td>
                                         <td>{{ $item['created_at'] }}</td>
@@ -69,7 +69,7 @@
                                 @forelse($currer as $item)
                                     <tr>
                                         <td>{{ $loop->index+1 }}</td>
-                                        <td><a href="#">{{ $item['name'] }}</a></td>
+                                        <td><a href="{{ route('user_show_currer', $item->id ) }}">{{ $item['name'] }}</a></td>
                                         <td>{{ $item['phone'] }}</td>
                                         <td>{{ $item['email'] }}</td>
                                         <td class="text-center">{{ $item['count'] }}</td>

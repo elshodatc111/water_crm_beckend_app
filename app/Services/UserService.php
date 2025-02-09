@@ -28,4 +28,8 @@ class UserService{
             'type' => $data['role']
         ]);
     }
+
+    public function getUserById($id){
+        return User::where('id', $id)->firstOrFail();
+    }
 }

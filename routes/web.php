@@ -13,7 +13,7 @@ Route::get('/balance', [BalanceController::class, 'index'])->name('balance');
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/user-currer/{id}', [UserController::class, 'user_show_currer'])->name('user_show_currer');
-Route::get('/user-currer/{id}', [UserController::class, 'user_show_currer'])->name('user_show_currer');
+Route::get('/user-guard/{id}', [UserController::class, 'user_show_guard'])->name('user_show_guard');
 Route::post('/users-create', [UserController::class, 'create'])->name('users_create');
 
 

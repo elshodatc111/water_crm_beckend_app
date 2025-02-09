@@ -27,7 +27,15 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Foydalanuvchi muvaffaqiyatli qo‘shildi!');
     }
 
-    
+    public function user_show_currer($id){
+        $currer = $this->userService->getUserById($id);
+        dd($currer);
+    }
+
+    public function user_show_guard($id){
+        $guard = $this->userService->getUserById($id);
+        dd($guard);
+    }
 
 
 }
