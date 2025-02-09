@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StorageController;
 
 Auth::routes();
 
@@ -16,4 +17,7 @@ Route::get('/user-currer/{id}', [UserController::class, 'user_show_currer'])->na
 Route::get('/user-guard/{id}', [UserController::class, 'user_show_guard'])->name('user_show_guard');
 Route::post('/users-create', [UserController::class, 'create'])->name('users_create');
 
+
+
+Route::get('/storage', [StorageController::class, 'index'])->name('storage');
 
