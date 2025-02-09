@@ -55,8 +55,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <a class="nav-link" href="{{ route('balance') }}">
+                    <i class="fas fa-money-check"></i>
                     <span>Balans</span>
                 </a>
             </li>

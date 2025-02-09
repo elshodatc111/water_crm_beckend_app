@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder{
         User::factory()->count(10)->create();
         $this->call([
             UserSeeder::class,
+            BalanceSeeder::class,
         ]);
     }
 }
