@@ -18,8 +18,9 @@ class UserController extends Controller
     public function index(){
         $guard = $this->userService->getGuards();
         $currer = $this->userService->getCouriers();
+        $admin = $this->userService->getAdmins();
         $Balance = $this->userService->getBalance();
-        return view('user.index', compact('guard', 'currer', 'Balance'));
+        return view('user.index', compact('guard', 'currer', 'admin', 'Balance'));
     }
 
     public function create(UserStoreRequest $request){

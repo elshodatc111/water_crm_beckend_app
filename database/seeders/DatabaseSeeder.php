@@ -8,10 +8,10 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder{
     public function run(): void{
-        User::factory()->count(10)->create();
         $this->call([
             UserSeeder::class,
             BalanceSeeder::class,
         ]);
+        User::factory()->count(50)->create();
     }
 }

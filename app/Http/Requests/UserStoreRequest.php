@@ -17,7 +17,7 @@ class UserStoreRequest extends FormRequest{
             'phone' => 'required|string|max:20|unique:users,phone',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
-            'role' => ['required', Rule::in(['guard', 'currer'])],
+            'role' => ['required', Rule::in(['guard', 'currer', 'admin'])],
         ];
     }
 

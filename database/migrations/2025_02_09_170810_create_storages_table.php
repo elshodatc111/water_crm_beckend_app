@@ -9,10 +9,10 @@ return new class extends Migration{
         Schema::create('storages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('dishes_count');
-            $table->integer('dishes_defective');
-            $table->integer('cash_paymart');
-            $table->boolean('status');
+            $table->integer('dishes_count')->default(0);
+            $table->integer('dishes_defective')->default(0);
+            $table->integer('cash_paymart')->default(0);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

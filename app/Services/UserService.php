@@ -10,7 +10,9 @@ class UserService{
     public function getGuards(){
         return User::where('type', 'guard')->get();
     }
-
+    public function getAdmins(){
+        return User::where('type', 'admin')->get();
+    }
     public function getCouriers(){
         return User::where('type', 'currer')->get();
     }

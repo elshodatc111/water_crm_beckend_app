@@ -13,7 +13,7 @@ class UserFactory extends Factory{
         return [
             'name' => fake()->name(),
             'phone' => fake()->phoneNumber(),
-            'type' => 'guard',
+            'type' => fake()->randomElement(['guard', 'currer']),
             'email' => fake()->unique()->safeEmail(),
             'password' => Hash::make('12345678'),
         ];

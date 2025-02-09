@@ -19,11 +19,14 @@
                 <li class="nav-item">
                     <a class="nav-link" id="damaged-tab" data-toggle="tab" href="#damaged">Kurerlar</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="admin-tab" data-toggle="tab" href="#admin">Admin</a>
+                </li>
             </ul>
             <div class="tab-content mt-3">
                 <div class="tab-pane fade show active" id="warehouse">
                     <div class="table-responsive">
-                        <table class="table table-bordered" width="100%" cellspacing="0">
+                        <table class="table table-bordered" width="100%" style="font-size:14px;" cellspacing="0">
                             <thead>
                                 <tr class="text-center">
                                     <th>#</th>
@@ -36,7 +39,7 @@
                             <tbody>
                                 @forelse($guard as $item)
                                     <tr>
-                                        <td>{{ $loop->index+1 }}</td>
+                                        <td class="text-center">{{ $loop->index+1 }}</td>
                                         <td><a href="{{ route('user_show_guard',$item['id']) }}">{{ $item['name'] }}</a></td>
                                         <td>{{ $item['phone'] }}</td>
                                         <td>{{ $item['email'] }}</td>
@@ -53,7 +56,7 @@
                 </div>
                 <div class="tab-pane fade" id="damaged">
                     <div class="table-responsive">
-                        <table class="table table-bordered" width="100%" cellspacing="0">
+                        <table class="table table-bordered" style="font-size:14px;" width="100%" cellspacing="0">
                             <thead>
                                 <tr class="text-center">
                                     <th>#</th>
@@ -68,12 +71,42 @@
                             <tbody>
                                 @forelse($currer as $item)
                                     <tr>
-                                        <td>{{ $loop->index+1 }}</td>
+                                        <td class="text-center">{{ $loop->index+1 }}</td>
                                         <td><a href="{{ route('user_show_currer', $item->id ) }}">{{ $item['name'] }}</a></td>
                                         <td>{{ $item['phone'] }}</td>
                                         <td>{{ $item['email'] }}</td>
                                         <td class="text-center">{{ $item['count'] }}</td>
                                         <td class="text-center">{{ number_format(($Balance['dishes_price']*$item['count']), 0, '.', ' ') }} so'm</td>
+                                        <td>{{ $item['created_at'] }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan=4 class="text-center">Omborchilar mavjud emas.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="admin">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" style="font-size:14px;" width="100%" cellspacing="0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>#</th>
+                                    <th>FIO</th>
+                                    <th>Telefon</th>
+                                    <th>Email</th>
+                                    <th>Ishga olindi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($admin as $item)
+                                    <tr>
+                                        <td class="text-center">{{ $loop->index+1 }}</td>
+                                        <td><a href="{{ route('user_show_currer', $item->id ) }}">{{ $item['name'] }}</a></td>
+                                        <td>{{ $item['phone'] }}</td>
+                                        <td>{{ $item['email'] }}</td>
                                         <td>{{ $item['created_at'] }}</td>
                                     </tr>
                                 @empty
@@ -124,6 +157,7 @@
                         <select class="form-control" id="role" name="role" required>
                             <option value="guard">Omborchi</option>
                             <option value="currer">Kurer</option>
+                            <option value="admin">Admin</option>
                         </select>
                     </div>
                 </div>

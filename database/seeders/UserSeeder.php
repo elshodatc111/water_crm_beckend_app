@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder{
     public function run(): void{
-        /*
         User::create([
             'name' => "Elshod Musurmonov",
             'phone' => '+998908830450',
@@ -17,6 +16,5 @@ class UserSeeder extends Seeder{
             'email' => 'elshodatc1116@gmail.com',
             'password' => Hash::make('12345678'),
         ]);
-        */
     }
 }
