@@ -8,36 +8,28 @@ use App\Http\Requests\UpdateStorageRequest;
 
 class StorageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    public function index(){
+        $Storage = Storage::get();
+        return view('storage.index',compact('Storage'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function store(StoreStorageRequest $request){
+        $validated = $request->validated();
+        Storage::create([
+            'name' => $validated['name'],
+            'dishes_count' => 0,
+            'dishes_defective' => 0,
+            'cash_paymart' => 0,
+            'status' => true,
+        ]);
+        return redirect()->route('stotage')->with('success', 'Ombor muvaffaqiyatli qo‘shildi!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreStorageRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Storage $storage)
-    {
-        //
+    public function show(Storage $id){
+        return view('storage.show');
     }
 
     /**
