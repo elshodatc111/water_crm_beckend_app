@@ -20,4 +20,5 @@ Route::post('/users-create', [UserController::class, 'create'])->name('users_cre
 
 
 Route::get('/storage', [StorageController::class, 'index'])->name('storage');
+Route::post('/storage-store', [StorageController::class, 'store'])->name('storage_store');
 

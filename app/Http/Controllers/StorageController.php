@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Storage;
 use Illuminate\Http\Request;
 use App\Services\StorageService;
+use App\Http\Requests\StorageStoreRequest;
 
 class StorageController extends Controller{
     protected $storageService;
@@ -15,16 +16,17 @@ class StorageController extends Controller{
     }
 
     public function index(){
-        $storage = $this->storageService->getStorage();
-        dd($storage);
+        $Storage = $this->storageService->getStorage();
+        return view('storage.index',compact('Storage'));
     }
 
     public function create(){
         //
     }
 
-    public function store(Request $request){
-        //
+    public function store(StorageStoreRequest $request){
+        $this->storageService->createStorage($request->validated());
+        return redirect()->back()->with('success', 'Yangi omborxona qo\'shildi!');
     }
 
     public function show(Storage $storage){
