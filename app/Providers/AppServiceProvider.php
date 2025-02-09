@@ -3,20 +3,16 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\UserService;
 
-class AppServiceProvider extends ServiceProvider
-{
-    
-    public function register(): void
-    {
-        //
+class AppServiceProvider extends ServiceProvider{
+    public function register(): void{
+        $this->app->singleton(UserService::class, function ($app) {
+            return new UserService();
+        });
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
+    public function boot(): void{
         //
     }
 }
