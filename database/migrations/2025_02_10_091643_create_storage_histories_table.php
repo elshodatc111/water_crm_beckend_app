@@ -6,18 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration{
     public function up(): void{
-        Schema::create('storage_outputs', function (Blueprint $table) {
+        Schema::create('storage_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('storage_id')->constrained('storages')->onDelete('cascade');
-            $table->foreignId('guard_id')->nullable();
-            $table->foreignId('currer_id')->nullable();
-            $table->boolean('status')->default(true);
-            $table->integer('dishes_count')->default(0);
-            $table->text('comment')->nullable();
+            $table->integer('dishes_input')->default(0);  // Omborga kirgan mahsulotlar
+            $table->integer('dishes_output')->default(0); // Ombordan chiqqan mahsulotlar
+            $table->integer('defective_output')->default(0); // Noto‘g‘ri mahsulotlar
             $table->timestamps();
         });
     }
+
     public function down(): void{
-        Schema::dropIfExists('storage_outputs');
+        Schema::dropIfExists('storage_histories');
     }
 };

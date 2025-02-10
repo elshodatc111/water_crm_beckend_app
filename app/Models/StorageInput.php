@@ -24,16 +24,7 @@ class StorageInput extends Model{
     public function storage(){
         return $this->belongsTo(Storage::class);
     }
-    // Yetkazib beruvchi bilan bog‘lanish
-    public function courier(){
-        return $this->belongsTo(User::class, 'currer_id');
-    }
-    // Buyurtmani yaratgan foydalanuvchi bilan bog‘lanish
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
-    }
-    // Tasdiqlagan admin bilan bog‘lanish
-    public function admin(){
-        return $this->belongsTo(User::class, 'admin_id');
     }
 }
