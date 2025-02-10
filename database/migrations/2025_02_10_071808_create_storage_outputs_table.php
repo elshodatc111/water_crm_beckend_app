@@ -9,9 +9,9 @@ return new class extends Migration{
         Schema::create('storage_outputs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('storage_id')->constrained('storages')->onDelete('cascade');
-            $table->foreignId('guard_id'); 
-            $table->foreignId('currer_id'); 
-            $table->boolean('status')->default(1);
+            $table->foreignId('guard_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('currer_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->boolean('status')->default(true);
             $table->integer('dishes_count')->default(0);
             $table->text('comment')->nullable();
             $table->timestamps();

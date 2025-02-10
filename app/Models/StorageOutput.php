@@ -14,4 +14,16 @@ class StorageOutput extends Model{
         'dishes_count', 
         'comment'
     ];
+    // Ombor bilan bog‘lanish
+    public function storage(){
+        return $this->belongsTo(Storage::class);
+    }
+    // Guard user bilan bog‘lanish
+    public function guard(){
+        return $this->belongsTo(User::class, 'guard_id');
+    }
+    // Courier user bilan bog‘lanish
+    public function courier(){
+        return $this->belongsTo(User::class, 'currer_id');
+    }
 }
