@@ -29,8 +29,9 @@ class StorageController extends Controller{
         return redirect()->back()->with('success', 'Yangi omborxona qo\'shildi!');
     }
 
-    public function show(Storage $storage){
-        //
+    public function show($id){
+        $Storage = $this->storageService->getShow($id);
+        return view('storage.show',compact('Storage'));
     }
 
     public function edit(Storage $storage){

@@ -17,4 +17,10 @@ class StorageService{
             'status' => true,
         ]);
     }
+
+    public function getShow($id){
+        return Storage::find($id);
+    }
+
+    
 }

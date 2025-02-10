@@ -44,7 +44,7 @@
                         @forelse($Storage as $item)
                         <tr>
                             <td class="text-center">{{ $loop->index+1 }}</td>
-                            <td><a href="">{{ $item['name'] }}</a></td>
+                            <td><a href="{{ route('storage_show',$item->id) }}">{{ $item['name'] }}</a></td>
                             <td class="text-center">{{ $item['dishes_count'] }}</td>
                             <td class="text-center">{{ $item['dishes_defective'] }}</td>
                             <td class="text-center">{{ number_format($item['cash_paymart'], 0, '.', ' ') }}</td>

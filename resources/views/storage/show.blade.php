@@ -195,7 +195,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('stotage_update',$Storage->id) }}" method="post">
+            <form action="#" method="post">
                 @csrf 
                 @method('put')
                 <div class="modal-body">
