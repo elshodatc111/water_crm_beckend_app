@@ -4,22 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use App\Services\BalanceService;
 use App\Http\Requests\UserStoreRequest;
 
 class UserController extends Controller
 {
     protected $userService;
 
-    public function __construct(UserService $userService){
+    public function __construct(UserService $userService, BalanceService $balanceService){
         $this->middleware('auth');
         $this->userService = $userService;
+        $this->balanceService = $balanceService;
     }
 
     public function index(){
         $guard = $this->userService->getGuards();
         $currer = $this->userService->getCouriers();
         $admin = $this->userService->getAdmins();
-        $Balance = $this->userService->getBalance();
+        $Balance = $this->balanceService->getBalance();
         return view('user.index', compact('guard', 'currer', 'admin', 'Balance'));
     }
 

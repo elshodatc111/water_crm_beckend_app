@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Services;
-
 use App\Models\Balance;
 
 class BalanceService{
+    public function getBalance(){
+        return Balance::first();
+    }
+
     public function updateBalance($data){
         $balance = Balance::first(); 
         if (!$balance) {

@@ -17,10 +17,6 @@ class UserService{
         return User::where('type', 'currer')->get();
     }
 
-    public function getBalance(){
-        return Balance::first();
-    }
-
     public function createUser(array $data){
         return User::create([
             'name' => $data['name'],
