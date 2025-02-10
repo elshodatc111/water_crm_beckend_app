@@ -6,6 +6,7 @@ use App\Models\Storage;
 use Illuminate\Http\Request;
 use App\Services\StorageService;
 use App\Http\Requests\StorageStoreRequest;
+use App\Http\Requests\StorageUpdateRequest;
 
 class StorageController extends Controller{
     protected $storageService;
@@ -38,8 +39,9 @@ class StorageController extends Controller{
         //
     }
 
-    public function update(Request $request, Storage $storage){
-        //
+    public function update(StorageUpdateRequest $request, $id){
+        $Storage = $this->storageService->updateStorage($request, $id);
+        return redirect()->back()->with('success', 'Ombor malumotlari yangilandi.');
     }
 
     public function destroy(Storage $storage){

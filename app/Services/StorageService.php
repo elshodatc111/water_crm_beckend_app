@@ -22,5 +22,11 @@ class StorageService{
         return Storage::find($id);
     }
 
-    
+    public function updateStorage($request,$id){
+        $Storage = Storage::find($id);
+        return $Storage->update([
+            'name' => $request->name,
+            'status' => filter_var($request->status, FILTER_VALIDATE_BOOLEAN) ? 1 : 0,
+        ]);
+    }
 }

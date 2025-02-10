@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 
 class UserStoreRequest extends FormRequest{
     public function authorize(): bool{
-        return true; 
+        return $this->user() && $this->user()->type === 'admin'; 
     }
 
     public function rules(): array

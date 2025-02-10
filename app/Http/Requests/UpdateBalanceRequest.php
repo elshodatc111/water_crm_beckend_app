@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateBalanceRequest extends FormRequest{
     public function authorize(): bool{
-        return true;
+        return $this->user() && $this->user()->type === 'admin';
     }
     public function rules(): array{
         return [
