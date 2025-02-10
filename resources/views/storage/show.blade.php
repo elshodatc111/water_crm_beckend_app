@@ -217,7 +217,6 @@
         </div>
     </div>
 </div>
-
 <!-- Idishlar kirim qilish Modal -->
 <div class="modal fade" id="incomeModal" tabindex="-1" role="dialog" aria-labelledby="incomeModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -228,12 +227,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="#" method="post">
+            <form action="{{ route('storage_update_input',$Storage->id) }}" method="post">
                 @csrf 
+                @method('put')
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="bottle-count">Kirim idishlar soni</label>
-                        <input type="number" class="form-control" id="bottle-count" name="count" required>
+                        <label for="dishes_count">Kirim idishlar soni</label>
+                        <input type="number" class="form-control" id="bottle-count" name="dishes_count" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -244,7 +244,6 @@
         </div>
     </div>
 </div>
-
 <!-- Idishlar chiqim qilish Modal -->
 <div class="modal fade" id="outcomeModal" tabindex="-1" role="dialog" aria-labelledby="outcomeModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -255,16 +254,17 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="#" method="post">
+            <form action="{{ route('storage_update_output', $Storage->id ) }}" method="post">
                 @csrf 
+                @method('put')
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="storage-name">Tanlang</label>
                         <select name="status" class="form-control">
-                            <option value="true">Idishlari</option>
-                            <option value="false">Nosoz idishlar</option>
+                            <option value="dishes_count">Idishlari</option>
+                            <option value="dishes_defective">Nosoz idishlar</option>
                         </select>
-                        <label for="bottle-out-count" class="mt-2">Chiqim idishlar soni</label>
+                        <label for="count" class="mt-2">Chiqim idishlar soni</label>
                         <input type="number" class="form-control" id="bottle-out-count" name="count" required>
                     </div>
                 </div>

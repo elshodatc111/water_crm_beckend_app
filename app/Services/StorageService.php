@@ -29,4 +29,25 @@ class StorageService{
             'status' => filter_var($request->status, FILTER_VALIDATE_BOOLEAN) ? 1 : 0,
         ]);
     }
+    public function updateStorageInput($request,$id){
+        $Storage = Storage::find($id);
+        $count = $Storage->dishes_count + $request->dishes_count;
+        return $Storage->update([
+            'dishes_count' => $count,
+        ]);
+    }
+    public function updateStorageOutput($request,$id){
+        $Storage = Storage::find($id);
+        $dishes_count = $Storage->dishes_count;
+        $dishes_defective = $Storage->dishes_defective;
+        if($request->status == 'dishes_count'){
+            $dishes_count = $Storage->dishes_count - $request->count;
+        }else{
+            $dishes_defective = $Storage->dishes_defective - $request->count;
+        }
+        return $Storage->update([
+            'dishes_count' => $dishes_count,
+            'dishes_defective' => $dishes_defective,
+        ]);
+    }
 }

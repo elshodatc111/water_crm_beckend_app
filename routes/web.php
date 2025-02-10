@@ -24,6 +24,8 @@ Route::get('/storage', [StorageController::class, 'index'])->name('storage');
 Route::post('/storage-store', [StorageController::class, 'store'])->name('storage_store');
 Route::get('/storage/{id}', [StorageController::class, 'show'])->name('storage_show');
 Route::put('/storage-update/{id}', [StorageController::class, 'update'])->name('storage_update');
+Route::put('/storage-update-input/{id}', [StorageController::class, 'update_input'])->name('storage_update_input');
+Route::put('/storage-update-output/{id}', [StorageController::class, 'update_output'])->name('storage_update_output');
 
 
 Route::get('/setting', [SettingController::class, 'index'])->name('setting');
