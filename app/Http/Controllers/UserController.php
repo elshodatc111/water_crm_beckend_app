@@ -11,11 +11,14 @@ class UserController extends Controller
 {
     protected $userService;
 
-    public function __construct(UserService $userService, BalanceService $balanceService){
-        $this->middleware('auth');
-        $this->userService = $userService;
-        $this->balanceService = $balanceService;
-    }
+    public function __construct(
+            UserService $userService, 
+            BalanceService $balanceService
+        ){
+            $this->middleware('auth');
+            $this->userService = $userService;
+            $this->balanceService = $balanceService;
+        }
 
     public function index(){
         $guard = $this->userService->getGuards();

@@ -15,12 +15,16 @@ use App\Http\Requests\StorageUpdateOutputRequest;
 class StorageController extends Controller{
     protected $storageService;
 
-    public function __construct(StorageService $storageService, StorageOutputService $storageOutputService, StorageHistoryService $storageHistoryService){
-        $this->middleware('auth');
-        $this->storageService = $storageService;
-        $this->storageOutputService = $storageOutputService;
-        $this->storageHistoryService = $storageHistoryService;
-    }
+    public function __construct(
+            StorageService $storageService,
+            StorageOutputService $storageOutputService, 
+            StorageHistoryService $storageHistoryService
+        ){
+            $this->middleware('auth');
+            $this->storageService = $storageService;
+            $this->storageOutputService = $storageOutputService;
+            $this->storageHistoryService = $storageHistoryService;
+        }
 
     public function index(){
         $Storage = $this->storageService->getStorage();
@@ -54,4 +58,6 @@ class StorageController extends Controller{
         $this->storageHistoryService->dishesOutput($request->status, $request->count, $id);
         return redirect()->back()->with('success', 'Omborga idishlar chiqim qilindi.');
     }
+
+
 }

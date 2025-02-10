@@ -12,11 +12,14 @@ class SettingController extends Controller{
     protected $userService;
     protected $balanceService;
 
-    public function __construct(UserService $userService, BalanceService $balanceService){
-        $this->middleware('auth');
-        $this->userService = $userService;
-        $this->balanceService = $balanceService;
-    }
+    public function __construct(
+            UserService $userService, 
+            BalanceService $balanceService
+        ){
+            $this->middleware('auth');
+            $this->userService = $userService;
+            $this->balanceService = $balanceService;
+        }
 
     public function index(){
         $Balance = $this->userService->getBalance();
