@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Storage;
 use Illuminate\Http\Request;
 use App\Services\StorageService;
+use App\Services\StorageOutputService;
 use App\Http\Requests\StorageStoreRequest;
 use App\Http\Requests\StorageUpdateRequest;
 use App\Http\Requests\StorageUpdateInsertRequest;
@@ -13,18 +14,16 @@ use App\Http\Requests\StorageUpdateOutputRequest;
 class StorageController extends Controller{
     protected $storageService;
 
-    public function __construct(StorageService $storageService){
+    public function __construct(StorageService $storageService, StorageOutputService $storageOutputService){
         $this->middleware('auth');
         $this->storageService = $storageService;
+        $this->storageOutputService = $storageOutputService;
     }
 
     public function index(){
         $Storage = $this->storageService->getStorage();
-        return view('storage.index',compact('Storage'));
-    }
 
-    public function create(){
-        //
+        return view('storage.index',compact('Storage'));
     }
 
     public function store(StorageStoreRequest $request){
@@ -34,11 +33,8 @@ class StorageController extends Controller{
 
     public function show($id){
         $Storage = $this->storageService->getShow($id);
-        return view('storage.show',compact('Storage'));
-    }
-
-    public function edit(Storage $storage){
-        //
+        $storageOutput = $this->storageOutputService->getAll();
+        return view('storage.show',compact('Storage','storageOutput'));
     }
 
     public function update(StorageUpdateRequest $request, $id){
@@ -54,9 +50,5 @@ class StorageController extends Controller{
     public function update_output(StorageUpdateOutputRequest $request, $id){
         $Storage = $this->storageService->updateStorageOutput($request, $id);
         return redirect()->back()->with('success', 'Omborga idishlar chiqim qilindi.');
-    }
-
-    public function destroy(Storage $storage){
-        //
     }
 }

@@ -139,6 +139,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse($storageOutput as $item)
                                 <tr class="text-center">
                                     <td>#</td>
                                     <td>Ombor nomi</td>
@@ -148,6 +149,11 @@
                                     <td>Status</td>
                                     <td>Status</td>
                                 </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan=7 class="text-center">Ombordan chiqimlar mavjud emas.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
