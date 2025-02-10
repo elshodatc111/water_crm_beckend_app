@@ -6,6 +6,7 @@ use App\Models\Storage;
 use Illuminate\Http\Request;
 use App\Services\StorageService;
 use App\Services\StorageOutputService;
+use App\Services\StorageHistoryService;
 use App\Http\Requests\StorageStoreRequest;
 use App\Http\Requests\StorageUpdateRequest;
 use App\Http\Requests\StorageUpdateInsertRequest;
@@ -14,15 +15,15 @@ use App\Http\Requests\StorageUpdateOutputRequest;
 class StorageController extends Controller{
     protected $storageService;
 
-    public function __construct(StorageService $storageService, StorageOutputService $storageOutputService){
+    public function __construct(StorageService $storageService, StorageOutputService $storageOutputService, StorageHistoryService $storageHistoryService){
         $this->middleware('auth');
         $this->storageService = $storageService;
         $this->storageOutputService = $storageOutputService;
+        $this->storageHistoryService = $storageHistoryService;
     }
 
     public function index(){
         $Storage = $this->storageService->getStorage();
-
         return view('storage.index',compact('Storage'));
     }
 
@@ -43,12 +44,14 @@ class StorageController extends Controller{
     }
 
     public function update_input(StorageUpdateInsertRequest $request, $id){
-        $Storage = $this->storageService->updateStorageInput($request, $id);
+        $this->storageService->updateStorageInput($request, $id);
+        $this->storageHistoryService->dishesCount($request->dishes_count, $id);
         return redirect()->back()->with('success', 'Omborga yangi idishlar qo\'shildi.');
     }
 
     public function update_output(StorageUpdateOutputRequest $request, $id){
-        $Storage = $this->storageService->updateStorageOutput($request, $id);
+        $this->storageService->updateStorageOutput($request, $id);
+        $this->storageHistoryService->dishesOutput($request->status, $request->count, $id);
         return redirect()->back()->with('success', 'Omborga idishlar chiqim qilindi.');
     }
 }
